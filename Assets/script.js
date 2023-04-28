@@ -1,31 +1,27 @@
-// var button = document.createElement('button');
-// button.innerText = ('Start Quiz!');
-// button.addEventListener('click', startQuiz)
 
 var startPageEl = document.querySelector('.start-page');
 var quizPageEl = document.querySelector('.app');
 
 var startButtonEl = document.querySelector('.start-button');
+var highScore = document.querySelector('.high-score-page');
 var timerEl = document.getElementById("countDownDisplay")
 var choiceOne = document.getElementById("choiceOne");
 var choiceTwo = document.getElementById("choiceTwo");
 var choiceThree = document.getElementById("choiceThree");
 var choiceFour = document.getElementById("choiceFour")
 var timerID;
-var startSeconds = 5;
-// console.log(startButtonEl);
+var timeLeft = 180;
 
-function checkanswer(){
-    console.log("clicked!!!!!")
-    console.log(this)
-}
+var currentQuestion = 0
+
 
 choiceOne.addEventListener("click", checkanswer);
 choiceTwo.addEventListener("click", checkanswer);
 choiceThree.addEventListener("click", checkanswer);
 choiceFour.addEventListener("click", checkanswer);
 
-startButtonEl.addEventListener('click',startQuiz)
+startButtonEl.addEventListener('click',startQuiz);
+
 function startQuiz (){
     startPageEl.style.display = 'none';
     quizPageEl.style.display = 'block';
@@ -39,14 +35,28 @@ function countdown(){
         clearInterval(timerID)
     }
 }
-//subtracts one
-// startSeconds--;
-// console.log("this is the second time: ", startSeconds)
-// startSeconds--;
-// console.log("this is the third time: ", startSeconds)
 
+function decreaseTime(){
+    timeLeft -= 10;
+    if (timeLeft<= 0) {
+        console.log("Time is up!")
+    }
+}
 
-
+function checkAnswer(){
+    var currentQuestion = questions[currentQuestion];
+    if (answer === currentQuestion.true) {
+        console.log("Correct answer");
+        currentQuestion++;
+    } else{
+        decreaseTime();
+        console.log("Wrong answer");
+        currentQuestion++;
+    }
+    if (currentQuestion === questions.length){
+        highScore.style.display = 'block';
+    }
+}
 
 
 let questions= [
@@ -91,7 +101,7 @@ let questions= [
 var questionElement = document.getElementById("question");
 var answerButtonElement = document.getElementById("answer-buttons");
 
-questionElement.innerText=questions[0].question
+// questionElement.innerText=questions[0].question
 
 
 
