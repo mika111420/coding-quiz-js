@@ -1,3 +1,54 @@
+// var button = document.createElement('button');
+// button.innerText = ('Start Quiz!');
+// button.addEventListener('click', startQuiz)
+
+var startPageEl = document.querySelector('.start-page');
+var quizPageEl = document.querySelector('.app');
+
+var startButtonEl = document.querySelector('.start-button');
+var timerEl = document.getElementById("countDownDisplay")
+var choiceOne = document.getElementById("choiceOne");
+var choiceTwo = document.getElementById("choiceTwo");
+var choiceThree = document.getElementById("choiceThree");
+var choiceFour = document.getElementById("choiceFour")
+var timerID;
+var startSeconds = 5;
+// console.log(startButtonEl);
+
+function checkanswer(){
+    console.log("clicked!!!!!")
+    console.log(this)
+}
+
+choiceOne.addEventListener("click", checkanswer);
+choiceTwo.addEventListener("click", checkanswer);
+choiceThree.addEventListener("click", checkanswer);
+choiceFour.addEventListener("click", checkanswer);
+
+startButtonEl.addEventListener('click',startQuiz)
+function startQuiz (){
+    startPageEl.style.display = 'none';
+    quizPageEl.style.display = 'block';
+    timerEl.textContent = startSeconds
+    timerID = setInterval(countdown,1000);
+}
+function countdown(){
+    startSeconds--;
+    timerEl.textContent = startSeconds;
+    if(startSeconds <= 0){
+        clearInterval(timerID)
+    }
+}
+//subtracts one
+// startSeconds--;
+// console.log("this is the second time: ", startSeconds)
+// startSeconds--;
+// console.log("this is the third time: ", startSeconds)
+
+
+
+
+
 let questions= [
     {
         question: "Which of the following is an element for the box model?",
@@ -39,6 +90,8 @@ let questions= [
 
 var questionElement = document.getElementById("question");
 var answerButtonElement = document.getElementById("answer-buttons");
-let 
+
+questionElement.innerText=questions[0].question
+
 
 
